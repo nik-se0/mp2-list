@@ -493,7 +493,26 @@ TEST_F(TwoListsTest, merge_after_ptr_two_not_empty_lists_is_correct)
     res.InsertToTail(11);
     res.InsertToTail(22);
     res.InsertToTail(3);
+    EXPECT_EQ(res, l3);
 }
+
+TEST_F(TwoListsTest, merge_after_ptr_for_not_empty_list_and_empty_list_is_correct)
+{
+    List l3 = l.Merge(l.GetHead()->next, z);
+    EXPECT_EQ(l, l3);
+}
+
+TEST_F(TwoListsTest, merge_after_null_ptr_for_not_empty_list_is_correct)
+{
+    ASSERT_NO_THROW(l.Merge(NULL, l2));
+}
+
+TEST_F(TwoListsTest, merge_after_null_ptr_for_not_empty_list_is_correct)
+{
+    List l3 = l.Merge(NULL, l2);
+    EXPECT_EQ(l, l3);
+}
+
 
 TEST(List, inverse_of_one_node_list_is_correct)
 {
