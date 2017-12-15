@@ -502,7 +502,7 @@ TEST_F(TwoListsTest, merge_after_ptr_for_not_empty_list_and_empty_list_is_correc
     EXPECT_EQ(l, l3);
 }
 
-TEST_F(TwoListsTest, merge_after_null_ptr_for_not_empty_list_is_correct)
+TEST_F(TwoListsTest, can_merge_after_null_ptr_for_not_empty_list)
 {
     ASSERT_NO_THROW(l.Merge(NULL, l2));
 }
