@@ -11,6 +11,131 @@ TEST(List, can_create_list)
   ASSERT_NO_THROW(List l);
 }
 
+TEST(List, new_list_is_empty)
+{
+	List l;
+	EXPECT_EQ(true, l.isEmpty());
+}
+
+TEST(List, can_add_elem_to_empty_list)
+{
+	List l;
+	l.InsertToHead(4);
+}
+
+TEST(List, can_add_elem_to_notempty_list)
+{
+	List l;
+	l.InsertToHead(4);
+	l.InsertToHead(5);
+	EXPECT_EQ(5, l.ViewHead());
+}
+
+TEST(List, can_add_to_tail_1)
+{
+	List l;
+	l.InsertToTail(4);
+	EXPECT_EQ(4, l.ViewHead());
+}
+
+TEST(List, can_add_to_tail_2)
+{
+	List l;
+	l.InsertToTail(4);
+	l.InsertToTail(5);
+	l.InsertToTail(6);
+	EXPECT_EQ(4, l.ViewHead());
+	// как проверить последний?
+}
+
+TEST(List, can_clean_empty_list)
+{
+	List l;
+	ASSERT_NO_THROW(l.Clean());
+}
+
+TEST(List, can_clean2)
+{
+	List l;
+	l.InsertToTail(4);
+	l.Clean();
+	EXPECT_EQ(true, l.isEmpty());
+}
+
+TEST(List, can_clean3)
+{
+	List l;
+	l.InsertToTail(4);
+	l.InsertToTail(5);
+	l.InsertToTail(6);
+	l.Clean();
+	EXPECT_EQ(true, l.isEmpty());
+}
+
+TEST(List, iterator1)
+{
+	List l;
+	l.InsertToHead(4);
+	ASSERT_NO_THROW(myiterator h = l.begin());
+}
+
+TEST(List, iterator2)
+{
+	List l;
+	l.InsertToHead(4);
+	myiterator h = l.begin();
+	EXPECT_EQ(4, *h);
+}
+
+TEST(List, iterator3)
+{
+	List l;
+	l.InsertToHead(4);
+	l.InsertToTail(5);
+	myiterator h = l.begin();
+	++h;
+	EXPECT_EQ(5, *h);
+}
+
+
+TEST(List, can_delete1)
+{
+	List l;
+	l.InsertToTail(4);
+	l.InsertToTail(5);
+	l.InsertToTail(6);
+
+	l.Delete(5);
+
+	myiterator it = l.begin();
+	++it;
+	EXPECT_EQ(6, *it);
+}
+
+TEST(List, can_delete2)
+{
+	List l;
+	l.InsertToTail(4);
+	l.InsertToTail(5);
+	l.InsertToTail(6);
+
+	l.Delete(4);
+
+	myiterator it = l.begin();
+	EXPECT_EQ(5, *it);
+}
+
+TEST(List, can_delete3)
+{
+	List l;
+	l.InsertToTail(4);
+	l.InsertToTail(5);
+	l.InsertToTail(6);
+
+	ASSERT_NO_THROW(l.Delete(7));
+}
+
+/*
 class EmptyList : public testing::Test
 {
 protected:
@@ -558,3 +683,6 @@ TEST(List, inverse_of_one_node_list_is_correct)
   EXPECT_EQ(5, l.GetHead()->data);
   EXPECT_EQ(NULL, l.GetHead()->next);
 }
+
+
+*/
